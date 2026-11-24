@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arturo Vásquez Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday, a junior developer's personal site: confident, tidy, specific
+   IDEA the Tower of Hanoi from his own Badger Logic game: his stack as discs, solved move by move
+   PICTURE a large live Tower of Hanoi whose discs are his layers (frontend, backend, data, cloud)
+   COLOUR his CV: deep ink #16142a ground, violet #6a4fe0 lead, disc tones green / wine / ochre / indigo; white below
+   TYPE Space Grotesk 700 for names and headings + Inter for text
+   LAYOUT laptop: ink band with name+bio left, tower right; phone: name, tower, buttons stacked */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f0e1d);--ink:light-dark(#1b1a2e,#ecebf5);--mute:light-dark(#5f5e6e,#a9a7bc);--line:light-dark(#e3e1ec,#2a2843);--card:light-dark(#f7f6fb,#17162b);--vio:light-dark(#5c3fd5,#a796f5);--deep:#16142a}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Inter",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:"Space Grotesk","Inter",sans-serif;margin:0;line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(40px,6vw,88px);padding-inline:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:10;background:var(--deep);color:#eceaf7;border-bottom:1px solid #2a2848}
+nav .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px)}
+nav .brand{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-decoration:none;margin-right:auto}
+nav .links{display:flex;gap:18px;flex-wrap:wrap}
+nav .links a{text-decoration:none;font-size:15px;color:#cfcbe8;padding:10px 0}
+nav .links a:hover{color:#fff}
+.lang{display:flex;border:1px solid #3b3866;border-radius:8px;overflow:hidden}
+.lang button{font:600 14px "Inter";background:none;color:#cfcbe8;border:0;padding:10px 14px;cursor:pointer;min-height:44px}
+.lang button[aria-pressed=true]{background:#a796f5;color:#16142a}
+.lang button:focus-visible,.btn:focus-visible{outline:3px solid #b6a5ff;outline-offset:2px}
+.hero{background:var(--deep);color:#eceaf7}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4vw,64px);align-items:center}
+.me{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.me img{width:84px;height:84px;border-radius:50%;border:3px solid #a796f5;flex:none}
+.me p{margin:0;color:#b9b4dc;font-size:15px}
+.me b{display:block;color:#fff;font-weight:600;font-size:16px}
+.hero h1{font-size:clamp(38px,5.4vw,64px);color:#fff}
+.hero .role{font:600 clamp(18px,2vw,22px) "Space Grotesk";color:#b6a5ff;margin:14px 0 16px}
+.hero .bio{color:#d2cfe6;max-width:56ch;margin:0 0 26px;font-size:17px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid #3b3866;color:#eceaf7}
+.btn.main{background:#a796f5;color:#16142a;border-color:#a796f5}
+.btn:hover{border-color:#b6a5ff}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tower{background:#1e1c38;border:1px solid #2e2b52;border-radius:18px;padding:18px 18px 14px}
+.stage{position:relative;height:clamp(210px,28vw,320px)}
+.peg{position:absolute;bottom:14px;width:8px;margin-left:-4px;height:78%;background:linear-gradient(90deg,#4a4680,#6c68a6);border-radius:4px 4px 0 0}
+.base{position:absolute;left:2%;right:2%;bottom:0;height:14px;border-radius:6px;background:linear-gradient(#4a4680,#34315e)}
+.disc{position:absolute;height:14%;border-radius:9px;display:flex;align-items:center;justify-content:center;font:600 clamp(11px,1.15vw,14px) "Inter";color:#fff;white-space:nowrap;overflow:hidden;box-shadow:inset 0 2px 0 rgba(255,255,255,.18),inset 0 -3px 0 rgba(0,0,0,.25);transition:left .45s cubic-bezier(.5,0,.3,1),bottom .45s cubic-bezier(.5,0,.3,1)}
+.tcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:14px;color:#b9b4dc}
+.tcap b{color:#fff;font-weight:600}
+.sec h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:10px}
+.sec .lead{color:var(--mute);margin:0 0 34px;max-width:62ch;font-size:17px}
+.job{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:32px;border-top:2px solid var(--vio);padding-top:22px}
+.job h3{font-size:24px}
+.job .when{color:var(--vio);font-weight:600;margin-top:8px}
+.job ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.alt{background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:20px}
+.proj{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.proj.big{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.proj h3{font-size:22px}
+.proj .kind{color:var(--mute);font-size:15px;margin-top:4px}
+.proj ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;font-weight:500;padding:3px 9px;border-radius:6px;background:color-mix(in srgb,var(--vio) 14%,transparent);color:var(--ink)}
+.proj .gh{margin-top:auto;font-weight:600;font-size:15px;color:var(--vio);text-decoration:none;padding:8px 0;display:inline-flex;gap:6px;align-items:center}
+.proj .gh:hover{text-decoration:underline}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:22px}
+.sk h3{font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sk h3 i{width:26px;height:10px;border-radius:4px;display:inline-block}
+.sk .chips span{font-size:14px;padding:5px 10px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.item{padding:16px 0;border-bottom:1px solid var(--line)}
+.item:first-of-type{border-top:1px solid var(--line)}
+.item .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:600}
+.item .top span{color:var(--vio);white-space:nowrap}
+.item p{margin:4px 0 0;color:var(--mute);font-size:15px}
+.two h3{font-size:22px;margin-bottom:14px}
+.langs{display:grid;gap:14px;margin-top:6px}
+.lv .top{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}
+.lv .bar{height:6px;border-radius:4px;background:var(--line)}
+.lv .bar i{display:block;height:100%;border-radius:4px;background:var(--vio)}
+footer{background:var(--deep);color:#eceaf7}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+footer h2{font-size:clamp(32px,4.4vw,52px);color:#fff}
+footer p{color:#c9c5e2;margin:14px 0 0;max-width:48ch}
+.contact{display:grid;gap:10px}
+.contact a,.contact div{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid #34315e;border-radius:12px;text-decoration:none;color:#eceaf7;font-size:16px;overflow-wrap:anywhere}
+.contact a:hover{border-color:#a796f5}
+.contact svg{width:20px;height:20px;flex:none;fill:none;stroke:#b6a5ff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fine{grid-column:1/-1;border-top:1px solid #2e2b52;padding-top:18px;color:#8e8aad;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:900px){.hero .wrap,.job,.proj.big,.two,footer .wrap{grid-template-columns:minmax(0,1fr)}.job{gap:14px}}
+@media(max-width:600px){nav .links{display:none}.disc{font-size:10.5px}.me img{width:68px;height:68px}.hero .bio{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.disc{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top">Arturo Vásquez</a>
+  <div class="links">
+    <a href="#experiencia" data-i="nav1">Experiencia</a>
+    <a href="#proyectos" data-i="nav2">Proyectos</a>
+    <a href="#habilidades" data-i="nav3">Habilidades</a>
+    <a href="#contacto" data-i="nav4">Contacto</a>
+  </div>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button id="b-es" aria-pressed="true">ES</button><button id="b-en" aria-pressed="false">EN</button>
+  </div>
+</div></nav>
+
+<header class="hero band" id="top"><div class="wrap">
+  <div>
+    <div class="me">
+      <img src="data:image/jpeg;base64,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" alt="Arturo José Vásquez Cubero">
+      <p><b>Arturo José Vásquez Cubero</b><span data-i="loc">Guayaquil, Ecuador</span></p>
+    </div>
+    <h1 data-i="h1">Construyo aplicaciones web y móviles de principio a fin.</h1>
+    <div class="role" data-i="role">Desarrollador Full Stack Junior · Badger Logic</div>
+    <p class="bio" data-i="bio">Tengo 1 año de experiencia con React, Next.js y Flutter en el frontend, y con Flask, Node.js y Firebase en el backend, sobre PostgreSQL, SQL Server y Firestore. Estudio Ingeniería en Software en la Universidad de Guayaquil (8.º semestre, me gradúo en mayo de 2027).</p>
+    <div class="cta">
+      <a class="btn main" href="#proyectos"><span data-i="cta1">Ver proyectos</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/Arturcubecj"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/arturo-vasquez-9660a8395"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a class="btn" href="#contacto" data-i="cta3">Contacto</a>
+    </div>
+  </div>
+  <figure class="tower" style="margin:0" aria-label="Torre de Hanói animada">
+    <div class="stage" id="stage">
+      <div class="base"></div>
+      <div class="peg" style="left:17%"></div><div class="peg" style="left:50%"></div><div class="peg" style="left:83%"></div>
+    </div>
+    <figcaption class="tcap"><span><b data-i="tc1">Mi stack, resuelto paso a paso</b> · <span data-i="tc2">inspirado en Torre de Hanói, mi juego en Badger Logic</span></span><span id="moves">0 / 15</span></figcaption>
+  </figure>
+</div></header>
+
+<section class="band sec" id="experiencia"><div class="wrap">
+  <h2 data-i="exT">Experiencia</h2>
+  <p class="lead" data-i="exL">Un año como desarrollador full stack en un equipo de 7 personas, entre una app móvil competitiva y el sitio web de la empresa.</p>
+  <div class="job">
+    <div><h3>Badger Logic</h3><div data-i="exR">Desarrollador Full Stack</div><div class="when" data-i="exW">2025 – Actualidad</div></div>
+    <ul id="exList"></ul>
+  </div>
+</div></section>
+
+<section class="band sec alt" id="proyectos"><div class="wrap">
+  <h2 data-i="prT">Proyectos</h2>
+  <p class="lead" data-i="prL">Proyectos profesionales y académicos, con el código en GitHub cuando es público.</p>
+  <div class="grid" id="projects"></div>
+</div></section>
+
+<section class="band sec" id="habilidades"><div class="wrap">
+  <h2 data-i="skT">Habilidades</h2>
+  <p class="lead" data-i="skL">Las tecnologías que uso en mis proyectos, agrupadas por capa.</p>
+  <div class="skills" id="skills"></div>
+</div></section>
+
+<section class="band sec alt"><div class="wrap two">
+  <div>
+    <h3 data-i="edT">Educación</h3>
+    <div class="item"><div class="top">Universidad de Guayaquil<span data-i="ed1w">2022 – may. 2027</span></div><p data-i="ed1">Ingeniería en Software · Facultad de Ciencias Matemáticas y Físicas · 8.º semestre</p></div>
+    <div class="item"><div class="top">Academia Naval Almirante Illingworth<span>2013 – 2019</span></div><p data-i="ed2">Bachiller Técnico en Administración de Sistemas</p></div>
+    <h3 data-i="coT" style="margin-top:30px">Cursos</h3>
+    <div class="item"><div class="top"><span style="color:inherit" data-i="co1">Computación en la nube con AWS</span><span>2026</span></div><p>AWS Academy Learner Lab · Universidad de Guayaquil</p></div>
+    <div class="item"><div class="top"><span style="color:inherit" data-i="co2">Contenedores con Docker y Kubernetes</span><span>2026</span></div><p data-i="co2d">Taller práctico · Desarrollo de Aplicaciones Web Avanzadas</p></div>
+  </div>
+  <div>
+    <h3 data-i="mtT">Cómo trabajo</h3>
+    <div class="chips" style="margin-bottom:30px" id="methods"></div>
+    <h3 data-i="lgT">Idiomas</h3>
+    <div class="langs">
+      <div class="lv"><div class="top"><span data-i="lg1">Español</span><span data-i="lg1v">Nativo</span></div><div class="bar"><i style="width:100%"></i></div></div>
+      <div class="lv"><div class="top"><span data-i="lg2">Inglés</span><span data-i="lg2v">Avanzado</span></div><div class="bar"><i style="width:80%"></i></div></div>
+    </div>
+  </div>
+</div></section>
+
+<footer class="band" id="contacto"><div class="wrap">
+  <div>
+    <h2 data-i="ftT">¿Trabajamos juntos?</h2>
+    <p data-i="ftP">Busco un puesto como desarrollador full stack o web junior. Escríbeme y te respondo pronto.</p>
+  </div>
+  <div class="contact">
+    <a href="mailto:arturo.jvasquez.c@gmail.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>arturo.jvasquez.c@gmail.com</a>
+    <a href="https://github.com/Arturcubecj"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>github.com/Arturcubecj</a>
+    <a href="https://www.linkedin.com/in/arturo-vasquez-9660a8395"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>linkedin.com/in/arturo-vasquez-9660a8395</a>
+    <div><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i="loc2">Durán, Guayas · Ecuador</span></div>
+  </div>
+  <div class="fine"><span>© 2026 Arturo José Vásquez Cubero</span><span>React · Next.js · Flutter · Flask · Node.js</span></div>
+</div></footer>
+
+<script>
+{
+const T={
+ nav1:["Experiencia","Experience"],nav2:["Proyectos","Projects"],nav3:["Habilidades","Skills"],nav4:["Contacto","Contact"],
+ loc:["Guayaquil, Ecuador","Guayaquil, Ecuador"],
+ h1:["Construyo aplicaciones web y móviles de principio a fin.","I build web and mobile apps from start to finish."],
+ role:["Desarrollador Full Stack Junior · Badger Logic","Junior Full Stack Developer · Badger Logic"],
+ bio:["Tengo 1 año de experiencia con React, Next.js y Flutter en el frontend, y con Flask, Node.js y Firebase en el backend, sobre PostgreSQL, SQL Server y Firestore. Estudio Ingeniería en Software en la Universidad de Guayaquil (8.º semestre, me gradúo en mayo de 2027).","I have 1 year of experience with React, Next.js and Flutter on the frontend, and Flask, Node.js and Firebase on the backend, on top of PostgreSQL, SQL Server and Firestore. I study Software Engineering at Universidad de Guayaquil (8th semester, graduating May 2027)."],
+ cta1:["Ver proyectos","See projects"],cta3:["Contacto","Contact"],
+ tc1:["Mi stack, resuelto paso a paso","My stack, solved move by move"],tc2:["inspirado en Torre de Hanói, mi juego en Badger Logic","inspired by Torre de Hanói, my game at Badger Logic"],
+ exT:["Experiencia","Experience"],exL:["Un año como desarrollador full stack en un equipo de 7 personas, entre una app móvil competitiva y el sitio web de la empresa.","One year as a full stack developer on a 7-person team, working on a competitive mobile app and the company website."],
+ exR:["Desarrollador Full Stack","Full Stack Developer"],exW:["2025 – Actualidad","2025 – Present"],
+ prT:["Proyectos","Projects"],prL:["Proyectos profesionales y académicos, con el código en GitHub cuando es público.","Professional and academic projects, with code on GitHub where it is public."],
+ skT:["Habilidades","Skills"],skL:["Las tecnologías que uso en mis proyectos, agrupadas por capa.","The technologies I use in my projects, grouped by layer."],
+ edT:["Educación","Education"],ed1w:["2022 – may. 2027","2022 – May 2027"],ed1:["Ingeniería en Software · Facultad de Ciencias Matemáticas y Físicas · 8.º semestre","B.S. in Software Engineering · School of Mathematical and Physical Sciences · 8th semester"],
+ ed2:["Bachiller Técnico en Administración de Sistemas","Technical High School Diploma in Systems Administration"],
+ coT:["Cursos","Courses"],co1:["Computación en la nube con AWS","Cloud Computing with AWS"],co2:["Contenedores con Docker y Kubernetes","Containers with Docker and Kubernetes"],co2d:["Taller práctico · Desarrollo de Aplicaciones Web Avanzadas","Hands-on workshop · Advanced Web Application Development"],
+ mtT:["Cómo trabajo","How I work"],lgT:["Idiomas","Languages"],lg1:["Español","Spanish"],lg1v:["Nativo","Native"],lg2:["Inglés","English"],lg2v:["Avanzado","Advanced"],
+ ftT:["¿Trabajamos juntos?","Let's work together"],ftP:["Busco un puesto como desarrollador full stack o web junior. Escríbeme y te respondo pronto.","I'm looking for a junior full stack or web developer role. Send me a message and I'll get back to you soon."],
+ loc2:["Durán, Guayas · Ecuador","Durán, Guayas · Ecuador"]
+};
+const EX=[
+ ["Desarrollo de la app móvil Torre de Hanói con Flutter y Firebase: duelos en línea, retos diarios y ranking ELO.","Built the Torre de Hanói mobile app with Flutter and Firebase: online duels, daily challenges and ELO ranking."],
+ ["Desarrollo de componentes del sitio web de la empresa con Next.js, React, TypeScript y Tailwind CSS.","Built components for the company website with Next.js, React, TypeScript and Tailwind CSS."],
+ ["Project Manager en 3 de las 10 fases del proyecto, con liderazgo rotativo en un equipo de 7 personas.","Project Manager for 3 of the project's 10 phases, with rotating leadership on a 7-person team."],
+ ["Elaboración de propuestas técnicas con arquitectura, cronograma, matriz RACI y modelo de datos en PostgreSQL.","Wrote technical proposals with architecture, schedule, RACI matrix and PostgreSQL data model."]
+];
+const PR=[
+ {big:1,n:"Torre de Hanói",k:["Juego competitivo en línea para Android","Competitive online game for Android"],t:["Flutter","Dart","Firebase","Cloud Functions","TypeScript","Firestore"],gh:"github.com/mroliver71/torre_de_hanoi",b:[
+  ["Juego libre, reto diario con tabla de clasificación, duelos asíncronos con repetición y ranking ELO.","Free play, a daily challenge with leaderboard, asynchronous duels with replay and ELO ranking."],
+  ["Firestore con reglas de seguridad, autenticación anónima, vinculación con Google y notificaciones push.","Firestore with security rules, anonymous auth, Google account linking and push notifications."],
+  ["Validación de partidas en el servidor y monitoreo con Crashlytics y Analytics.","Server-side match validation and monitoring with Crashlytics and Analytics."],
+  ["Project Manager en 3 de las 10 fases, con liderazgo rotativo.","Project Manager for 3 of the 10 phases, with rotating leadership."]]},
+ {n:"Tutorías AC",k:["Sistema de gestión de tutorías académicas","Academic tutoring management system"],t:["Python","Flask","Next.js","TypeScript","PostgreSQL","Docker Compose","Ollama"],gh:"github.com/Arturcubecj/Tutorias-AC",b:[
+  ["Microservicios con API REST y panel por roles: Administrador, Coordinador, Docente y Estudiante.","REST API microservices and a role-based dashboard: Administrator, Coordinator, Teacher and Student."],
+  ["Solicitudes de tutoría, validación de disponibilidad, bitácoras, seguimiento académico y reportes.","Tutoring requests, availability checks, session logs, academic tracking and reports."],
+  ["Chatbot con IA local (Ollama).","Chatbot running on local AI (Ollama)."]]},
+ {n:"DrCell Pro",k:["Sistema de gestión de reparaciones","Repair management system"],t:["React","Material UI","Node.js","Express","MySQL"],gh:"github.com/Arturcubecj/drcell-front",b:[
+  ["Aplicación web en un equipo de 4 personas.","Web application built by a 4-person team."],
+  ["Panel por roles (Admin / Técnico / Cliente), inventario, facturación con IVA y rastreo público de reparaciones.","Role-based panel (Admin / Technician / Customer), inventory, VAT invoicing and public repair tracking."]]},
+ {n:["Sistema Cafetería","Cafeteria System"],k:["Gestión de pedidos, inventario y compras","Order, inventory and purchasing management"],t:["Java","Pruebas V&V|V&V testing"],b:[
+  ["Líder de un equipo de 5 personas; desarrollo del módulo de Proveedores y Compras.","Led a 5-person team; built the Suppliers and Purchasing module."],
+  ["Pruebas de verificación y validación de software.","Software verification and validation testing."]]},
+ {n:["Automatización con Python","Python Automation"],k:["Checklist de cumplimiento normativo","Regulatory compliance checklist"],t:["Python","openpyxl","Excel"],b:[
+  ["Script que genera un libro de Excel de 9 hojas con formato, fórmulas y validaciones para auditar una norma técnica de gas LP.","Script that generates a 9-sheet Excel workbook with formatting, formulas and validations to audit an LP gas technical standard."]]}
+];
+const SK=[
+ {c:"#3d3a8a",n:"Frontend",t:"React.js,Next.js,TypeScript,JavaScript ES6+,Tailwind CSS,Material UI,HTML5,CSS3,Axios,Flutter,Dart,Android (XML)"},
+ {c:"#24735f",n:"Backend",t:"Python,Flask,Node.js,Express.js,REST API,Cloud Functions,Java,C#,C++"},
+ {c:"#8a3a55",n:["Bases de datos","Databases"],t:"PostgreSQL,MySQL,SQL Server,Firestore,Supabase,DynamoDB"},
+ {c:"#9a7420",n:["Nube y DevOps","Cloud & DevOps"],t:"AWS EC2,S3,Lambda,API Gateway,IAM,CloudWatch,Firebase Auth,Cloud Messaging,Crashlytics,Docker,Docker Compose,Kubernetes"},
+ {c:"#5c3fd5",n:["Herramientas","Tools"],t:"Git / GitHub,VS Code,Android Studio,Firebase Emulator,ADB,Swagger,Thunder Client,MySQL Workbench,SSMS,PyCharm"}
+];
+const MT=[["Scrum y XP","Scrum and XP"],["Arquitectura por capas","Layered architecture"],["Microservicios","Microservices"],["Modelado UML","UML modeling"],["Calidad (SQAP)","Quality assurance (SQAP)"],["Puntos de Función","Function Points"],["Liderazgo de proyectos","Project leadership"],["Documentación técnica","Technical documentation"]];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const L=(v,i)=>Array.isArray(v)?v[i]:v;
+const tag=(s,i)=>esc(s.includes("|")?s.split("|")[i]:s);
+let lang=0;
+function render(){
+ const i=lang;
+ document.documentElement.lang=i?"en":"es";
+ document.querySelectorAll("[data-i]").forEach(e=>{const v=T[e.dataset.i];if(v)e.textContent=v[i]});
+ document.getElementById("exList").innerHTML=EX.map(x=>`<li>${esc(x[i])}</li>`).join("");
+ document.getElementById("projects").innerHTML=PR.map(p=>{
+  const head=`<div><h3>${esc(L(p.n,i))}</h3><div class="kind">${esc(p.k[i])}</div></div><div class="chips">${p.t.map(t=>`<span>${tag(t,i)}</span>`).join("")}</div>`;
+  const body=`<ul>${p.b.map(b=>`<li>${esc(b[i])}</li>`).join("")}</ul>${p.gh?`<a class="gh" href="https://${esc(p.gh)}">${esc(p.gh)} →</a>`:""}`;
+  return p.big?`<article class="proj big"><div style="display:flex;flex-direction:column;gap:12px">${head}${p.gh?`<a class="gh" href="https://${esc(p.gh)}">${esc(p.gh)} →</a>`:""}</div><ul>${p.b.map(b=>`<li>${esc(b[i])}</li>`).join("")}</ul></article>`:`<article class="proj">${head}${body}</article>`;
+ }).join("");
+ document.getElementById("skills").innerHTML=SK.map(s=>`<div class="sk"><h3><i style="background:${s.c}"></i>${esc(L(s.n,i))}</h3><div class="chips">${s.t.split(",").map(t=>`<span>${esc(t)}</span>`).join("")}</div></div>`).join("");
+ document.getElementById("methods").innerHTML=MT.map(m=>`<span style="font-size:14px;padding:5px 10px">${esc(m[i])}</span>`).join("");
+ document.getElementById("b-es").setAttribute("aria-pressed",String(!i));
+ document.getElementById("b-en").setAttribute("aria-pressed",String(!!i));
+ try{localStorage.setItem("av-lang",i)}catch(e){}
+}
+document.getElementById("b-es").addEventListener("click",()=>{lang=0;render()});
+document.getElementById("b-en").addEventListener("click",()=>{lang=1;render()});
+try{const s=localStorage.getItem("av-lang");if(s==="1")lang=1}catch(e){}
+render();
+
+/* Tower of Hanoi */
+const stage=document.getElementById("stage");
+const D=[{t:"Docker · AWS",c:"#9a7420",w:92},{t:"PostgreSQL",c:"#8a3a55",w:76},{t:"Flask · Node",c:"#24735f",w:60},{t:"React",c:"#3d3a8a",w:44}];
+const X=[17,50,83];
+const els=D.map(d=>{const e=document.createElement("div");e.className="disc";e.style.background=`linear-gradient(${d.c},color-mix(in srgb,${d.c} 70%,#000))`;e.style.width=(d.w*0.355)+"%";e.textContent=d.t;stage.appendChild(e);return e});
+let pegs=[[0,1,2,3],[],[]];
+const moves=[];(function h(n,a,b,c){if(!n)return;h(n-1,a,c,b);moves.push([a,c]);h(n-1,b,a,c)})(4,0,1,2);
+const mv=document.getElementById("moves");
+function place(){pegs.forEach((p,pi)=>p.forEach((d,k)=>{const e=els[d];e.style.left=`calc(${X[pi]}% - ${D[d].w*0.1775}%)`;e.style.bottom=`calc(14px + ${k*14.4}%)`}))}
+place();
+let step=0;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let pause=0;
+function tick(){
+ if(step===moves.length){if(++pause<3)return;pause=0;pegs=[[0,1,2,3],[],[]];step=0;place();mv.textContent=`0 / ${moves.length}`;return}
+ const [a,c]=moves[step];pegs[c].push(pegs[a].pop());step++;place();mv.textContent=`${step} / ${moves.length}`;
+}
+if(!reduce){const timer=setInterval(tick,800)}
+else{moves.forEach(([a,c])=>pegs[c].push(pegs[a].pop()));place();mv.textContent=`${moves.length} / ${moves.length}`}
+}
+</script>
+</body>
+</html>
